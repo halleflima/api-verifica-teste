@@ -1,5 +1,8 @@
 'use strict';
 
+const { values } = require("sequelize/types/lib/operators");
+const bcrypt = require('bcrypt');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     queryInterface.createTable('pessoas', { 
