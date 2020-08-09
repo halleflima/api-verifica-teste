@@ -22,6 +22,9 @@ module.exports = {
     if (!pessoa) {
       return res.status(400).json({ error: 'Usuario não encontrado' });
     }
+    if (pessoa.email !==  email) {
+      return res.status(400).json({ error: 'Nome de usuario errado!' });
+    }
 
     const checa_senha = await pessoa.checarSenha(senha)
     if (!checa_senha) {
