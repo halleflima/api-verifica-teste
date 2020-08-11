@@ -5,11 +5,11 @@ const secret = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiw
 
 module.exports = {
 
-   logar(payload) {
+   criaToken(payload) {
     return jwt.sign(payload, secret, {  expiresIn: 86400  })
    },
 
-   verificar(token) {
+   checaToken(token) {
      return jwt.verify(token, secret)
    }
 

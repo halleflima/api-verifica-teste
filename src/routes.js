@@ -1,10 +1,12 @@
 const express = require('express');
 
-const PessoaController = require('./controllers/PessoaController') 
+const LoginControl = require('./controllers/LoginControl') 
 
 const router = express.Router();
 
-router.post('/pessoa', PessoaController.store);
-router.get('/pessoa/:idpessoa', PessoaController.index);
+router.post('/pessoa', LoginControl.criaUsuario);
+router.get('/pessoa', LoginControl.logar);
+router.get('/listarUsers', LoginControl.autenticaRota, LoginControl.listaUsuarios);
+router.get('/me', LoginControl.autenticaRota, LoginControl.me);
 
 module.exports = router;
