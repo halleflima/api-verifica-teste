@@ -1,9 +1,8 @@
 const Pessoas = require('../models/Pessoas.js');
-
-const jwt = require('jsonwebtoken');
+const jwt = require('../services/jwt');
 
 module.exports = {
-  async store(req, res, next) {
+  async store(req, res) {
     try {
       const { nome, nivel_user, email, senha } = req.body;
 
@@ -16,14 +15,11 @@ module.exports = {
 
       pessoa.senha = undefined;
 
-      const token = jwt.sign(
-        { pessoa: pessoa.id },
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwi'
-      );
+      const token = jwt.logar({ pessoa: pessoa.id });
 
-      return res.json({ pessoa, token });
+      return res.json ({ pessoa, token }); 
     } catch (error) {
-      return res.json(400, error);
+      return res.json (400, error);
     }
   },
 
