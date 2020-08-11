@@ -53,6 +53,15 @@ module.exports = {
     }
   },
 
+  async listarpessoas(rea, res) {
+    try {
+      const pessoas = await Pessoas.findAll()
+      return res.json (pessoas)
+    } catch (error) {
+      return res.json (error)
+    }
+  },
+
   async autenticaRota (req, res, next) {
     const [, token] = req.headers.authorization.split(' ')
     console.log(req.headers.authorization)
@@ -73,16 +82,7 @@ module.exports = {
       return res.json (401, error)
     }
   },
-
-  async listaUsuarios(rea, res) {
-    try {
-      const pessoas = await Pessoas.findAll()
-      return res.json (pessoas)
-    } catch (error) {
-      return res.json (error)
-    }
-  },
-
+  
   async me (req, res, next) {
     res.json(req.auth)
   },
