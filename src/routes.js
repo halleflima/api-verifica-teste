@@ -1,16 +1,23 @@
 const express = require('express');
 
-const LoginControl = require('./controllers/LoginControl') 
+const LoginController = require('./controllers/LoginController') 
+const ClienteController = require('./controllers/ClienteController') 
 
 const router = express.Router();
 
 //Rotas de autenticação
-router.post('/pessoa', LoginControl.criaUsuario);
-router.get('/login', LoginControl.logar);
-router.get('/listarpessoas', LoginControl.autenticaRota, LoginControl.listarpessoas);
+router.post('/pessoa', LoginController.novoUsuario);
+router.get('/login', LoginController.logar);
+router.get('/listarpessoas', LoginController.autorizaRota, LoginController.listarPessoas);
 
 //Identifica usuario logado
-router.get('/me', LoginControl.autenticaRota, LoginControl.me);
+router.get('/me', LoginController.autorizaRota, LoginController.me);
+
+//Rotas para gerencia clientes na abertura da ordem
+//ABERTA 
+//CORRIGIDA
+//CONSULTADA
+router.post('/ordem', LoginController.autorizaRota, ClienteController.novaOrdem )
 
 
 

@@ -2,7 +2,7 @@ const Pessoas = require('../models/Pessoas.js');
 const jwt = require('../services/jwt');
 
 module.exports = {
-  async criaUsuario(req, res) {
+  async novoUsuario(req, res) {
     try {
       const { nome, email, senha } = req.body;
       
@@ -39,8 +39,8 @@ module.exports = {
         return res.json(400, {error: 'Email invalido'})
       }
 
-      const validaSenha = await pessoa.checarSenha(senha)
-      if (!validaSenha) {
+      const valida_senha = await pessoa.checarSenha(senha)
+      if (!valida_senha) {
         return res.json(400, {error: 'Senha invalida'})
       }
 
@@ -53,7 +53,7 @@ module.exports = {
     }
   },
 
-  async listarpessoas(rea, res) {
+  async listarPessoas(rea, res) {
     try {
       const pessoas = await Pessoas.findAll()
       return res.json (pessoas)
@@ -62,7 +62,7 @@ module.exports = {
     }
   },
 
-  async autenticaRota (req, res, next) {
+  async autorizaRota (req, res, next) {
     const [, token] = req.headers.authorization.split(' ')
     console.log(req.headers.authorization)
 
@@ -82,7 +82,7 @@ module.exports = {
       return res.json (401, error)
     }
   },
-  
+
   async me (req, res, next) {
     res.json(req.auth)
   },

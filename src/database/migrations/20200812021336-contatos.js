@@ -2,27 +2,22 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    queryInterface.createTable('pessoas', { 
+    queryInterface.createTable('contatos', { 
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      nome: {
-        type: Sequelize.STRING,
+      id_pessoa: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-      }, 
-      nivel_user: {
-        type: Sequelize.STRING,
+        references: { model: 'pessoas', key: 'id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
+      telefone: {
         allowNull: false,
-      }, 
-      email: {
         type: Sequelize.STRING,
-        allowNull: true,
-      }, 
-      senha: {
-        type: Sequelize.STRING,
-        allowNull: true,
       },
       created_at: {
         allowNull: false,
