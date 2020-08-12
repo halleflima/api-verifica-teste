@@ -1,18 +1,18 @@
 const { Model, DataTypes } = require('sequelize');
 
-class Contatos extends Model {
+class Ordens extends Model {
   static init(connection) {
     super.init(
       {
-        telefone: DataTypes.STRING,
+        status: DataTypes.STRING,
       },{
         sequelize: connection,
       }
     );
   }
   static associate(models) {
-    this.belongsTo(models.Pessoas,  {foreignKey:'id_pessoa', as:'pessoa' });
+    this.belongsTo(models.Ordens,  {foreignKey:'id_pessoa', as:'pes_ordem' });
   }
 }
 
-module.exports = Contatos;
+module.exports = Ordens;

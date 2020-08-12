@@ -15,9 +15,10 @@ router.get('/me', LoginController.autorizaRota, LoginController.me);
 
 //Rotas para gerencia clientes na abertura da ordem
 //ABERTA 
+//ANDAMENTO
 //CORRIGIDA
-//CONSULTADA
-router.post('/ordem', LoginController.autorizaRota, ClienteController.novaOrdem )
+//DISPONIVEL PARA CONSULTA
+router.post('/ordem', ClienteController.novaOrdem )
 
 
 
